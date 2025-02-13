@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Open Link in about:blank</title>
+    <title>About:blank site opener</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -63,13 +63,19 @@
             font-size: 14px;
             margin-top: 10px;
         }
+
+        iframe {
+            width: 100%;
+            height: 80vh;
+            border: none;
+        }
     </style>
     <script>
         function openLink() {
             var url = document.getElementById('urlInput').value;
             if (url) {
                 var newWindow = window.open('about:blank', '_blank');
-                newWindow.location.href = url;
+                newWindow.document.write('<iframe src="' + url + '"></iframe>');
             } else {
                 document.getElementById('alert').innerText = 'Please enter a valid URL!';
             }
